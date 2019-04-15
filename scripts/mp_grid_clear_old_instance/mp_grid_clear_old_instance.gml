@@ -4,32 +4,33 @@
 /// @param	objInst*	->	object instance, default is ID
 /// ------------------------------------------------------------------------
 
-// Get Parameters
-if (argument_count == 2)
-	var obj = argument[1];
-else
-	var obj = id;
-var mp = argument[0];
-/// ------------------------------------------------------------------------
+#region Parameters & Exit Conditions
 	
-// Exit Conditions
-if (!instance_exists(obj)) {
-	show_debug_message("ERROR @ mp_grid_clear_old_instance() - obj: " + string(obj) + " does not exist.");
-	return false;
-}
-if (mp == noone) { // really? no way to check for mp_grid_exists?
-	show_debug_message("ERROR @ mp_grid_clear_old_instance() - mp_grid: " + string(mp) + " does not exist.");
-	return false;
-}
-if (!variable_instance_exists(obj, "obbl") || !variable_instance_exists(obj, "obbr") || !variable_instance_exists(obj, "obbt") || !variable_instance_exists(obj, "obbb")) {
-	show_debug_message("ERROR @ mp_grid_clear_old_instance() - object: " + string(obj) + " does not have variables obbl, obbr, obbt, or obbb.");
-	return false;
-}
-if (obj.obbl == noone || obj.obbr == noone || obj.obbt == noone || obj.obbb == noone) {
-	show_debug_message("ERROR @ mp_grid_clear_old_instance() - object: " + string(obj) + "'s variables obbl, obbr, obbt, or obbb are set to noone.");
-	return false;
-}
-/// ------------------------------------------------------------------------
+	if (argument_count == 2)
+		var obj = argument[1];
+	else
+		var obj = id;
+	var mp = argument[0];
+	
+	// Exit Conditions
+	if (!instance_exists(obj)) {
+		show_debug_message("ERROR @ mp_grid_clear_old_instance() - obj: " + string(obj) + " does not exist.");
+		return false;
+	}
+	if (mp == noone) { // really? no way to check for mp_grid_exists?
+		show_debug_message("ERROR @ mp_grid_clear_old_instance() - mp_grid: " + string(mp) + " does not exist.");
+		return false;
+	}
+	if (!variable_instance_exists(obj, "obbl") || !variable_instance_exists(obj, "obbr") || !variable_instance_exists(obj, "obbt") || !variable_instance_exists(obj, "obbb")) {
+		show_debug_message("ERROR @ mp_grid_clear_old_instance() - object: " + string(obj) + " does not have variables obbl, obbr, obbt, or obbb.");
+		return false;
+	}
+	if (obj.obbl == noone || obj.obbr == noone || obj.obbt == noone || obj.obbb == noone) {
+		show_debug_message("ERROR @ mp_grid_clear_old_instance() - object: " + string(obj) + "'s variables obbl, obbr, obbt, or obbb are set to noone.");
+		return false;
+	}
+
+#endregion
 	
 // Clear Cells Based Off Old Bounding Box Coordinates stored in the Object
 var o1 = world_to_grid(obj.obbl, obj.obbt);

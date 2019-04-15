@@ -1,17 +1,19 @@
 /// @description		Check for clear line of sight from first object
 ///	returns boolean		-> if clear line of sight exists
-/// @param	Obj1		-> object_instance
-/// @param	Obj2		-> object_instance
+/// @param	From		-> object_instance
+/// @param	To			-> object_instance
 /// -------------------------------------------------------------------------------
 
-// Get Parameters
-var obj1 = argument0;
-var obj2 = argument1;
-/// -------------------------------------------------------------------------------
+#region Parameters & Exit Conditions
 
-// Exit Condition
-if (!instance_exists(obj1) || !instance_exists(obj2))
-	return false;
-/// -------------------------------------------------------------------------------
+	var from	= argument0;
+	var to		= argument1;
 
-return (collision_line(obj1.x, obj1.y, obj2.x, obj2.y, oWall, false, true) == noone);
+	// Exit Condition
+	if (!instance_exists(from) || !instance_exists(to))
+		return false;
+		
+#endregion
+
+// Check For Clear Line Of Sight
+return (collision_line(from.x, from.y, to.x, to.y, oWall, false, true) == noone);

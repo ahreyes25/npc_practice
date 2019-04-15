@@ -4,14 +4,15 @@
 /// @param	Radius		-> radius int
 /// -------------------------------------------------------------------------------
 
-// Get Parameters
-var obj = argument0;
-var rad = argument1;
-/// -------------------------------------------------------------------------------
+#region Parameters & Exit Conditions
+	
+	var obj = argument0;
+	var rad = argument1;
 
-// Exit Condition
-if (!instance_exists(obj) || rad < 0)
-	return false;
-/// -------------------------------------------------------------------------------
+	// Exit Condition
+	if (!instance_exists(obj) || rad < 0)
+		return false;
+
+#endregion
 
 return (point_distance(x, y, obj.x, obj.y) <= rad);

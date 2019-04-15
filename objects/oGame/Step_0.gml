@@ -17,3 +17,11 @@ if (keyboard_check_pressed(vk_escape))
 if (keyboard_check_pressed(ord("T")))
 	if (keyboard_check(vk_shift))
 		global.debug = !global.debug;
+		
+// Create Crate
+if (mouse_check_button_pressed(mb_right)) {
+	if (keyboard_check(vk_shift)) {
+		var wall = instance_create_layer(mouse_x, mouse_y, "Instances", oWall);
+		wall.followingMouse = true;
+	}
+}

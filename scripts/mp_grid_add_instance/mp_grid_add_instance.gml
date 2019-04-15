@@ -4,24 +4,25 @@
 /// @param	objInst*	->	object instance, default is ID
 /// ------------------------------------------------------------------------
 
-// Get Parameters
-if (argument_count == 2)
-	var obj = argument[1];
-else
-	var obj = id;
-var mp = argument[0];
-/// ------------------------------------------------------------------------
+#region Parameters & Exit Conditions
+
+	if (argument_count == 2)
+		var obj = argument[1];
+	else
+		var obj = id;
+	var mp = argument[0];
 	
-// Exit Conditions
-if (!instance_exists(obj)) {
-	show_debug_message("ERROR @ mp_grid_add_instance() - obj: " + string(obj) + " does not exist.");
-	return false;
-}
-if (mp == noone) { // really? no way to check for mp_grid_exists?
-	show_debug_message("ERROR @ mp_grid_add_instance() - mp_grid: " + string(mp) + " does not exist.");
-	return false;
-}
-/// ------------------------------------------------------------------------
+	// Exit Conditions
+	if (!instance_exists(obj)) {
+		show_debug_message("ERROR @ mp_grid_add_instance() - obj: " + string(obj) + " does not exist.");
+		return false;
+	}
+	if (mp == noone) { // really? no way to check for mp_grid_exists?
+		show_debug_message("ERROR @ mp_grid_add_instance() - mp_grid: " + string(mp) + " does not exist.");
+		return false;
+	}
+
+#endregion
 
 // Convert 6 World Points Into Grid Points
 var c1 = world_to_grid(obj.bbox_left, obj.bbox_top);

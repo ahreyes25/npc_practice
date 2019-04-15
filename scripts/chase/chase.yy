@@ -1,8 +1,8 @@
 {
-    "id": "56836f0d-3f5c-48e3-8aa5-3cc06114802d",
+    "id": "e3957856-4b2a-4759-b880-86f52a9ed69e",
     "modelName": "GMScript",
     "mvc": "1.0",
-    "name": "check_for_chase_stop",
+    "name": "chase",
     "IsCompatibility": false,
     "IsDnD": false
 }

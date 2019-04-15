@@ -11,4 +11,6 @@ switch (state) {
 		image_speed = 0.6;
 		break;
 }
-draw_self();
+
+if (!global.debug)
+	draw_self();

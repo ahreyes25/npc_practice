@@ -1,4 +1,4 @@
-/// @description		Check for chasing conditions
+/// @description		Check for distance to target to determine attacking
 /// @param Target*
 /// -------------------------------------------------------------------------------
 
@@ -15,15 +15,15 @@
 		var target = argument[0];
 
 	// Exit Condition
-	if (!instance_exists(target) || !variable_instance_exists(id, "sightRadius") || !variable_instance_exists(id, "state"))
-		return;
-		
+	if (!instance_exists(target) || !variable_instance_exists(id, "attackRadius") || 
+		!variable_instance_exists(id, "state")) {
+			return;
+	}
+
 #endregion
 
 if (
-	inside_radius(target, sightRadius) && 
-	line_of_sight(id, target) && 
-	inside_peripherals(id, target)
+	point_distance(x, y, target.x, target.y) <= attackRadius
 ){
-	state = CPU_STATE.CHASE;
+	state = CPU_STATE.MELEE;
 }

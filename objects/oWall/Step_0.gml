@@ -9,22 +9,23 @@ if (!setStartingPointToGrid && global.aiGrid != noone && global._aiGrid != noone
 
 // Toggle Mouse Follow
 if (mouse_touching() && mouse_check_button_pressed(mb_left)) {
-	followingMouse = !followingMouse;
-	
-	
-	// Drop Box -> Add Box to MP Grid, Clear Old Position
-	if (!followingMouse && global.aiGrid != noone && global._aiGrid != noone) {
-	
-		mp_grid_add_instance(global.aiGrid);
-		mp_grid_clear_old_instance(global.aiGrid);
+	if (keyboard_check(vk_shift)) {
 		
-		// Store Current Values As Old For Later Clearing
-		obbl = bbox_left;
-		obbr = bbox_right;
-		obbt = bbox_top;
-		obbb = bbox_bottom;
-	}
+		followingMouse = !followingMouse;
+	
+		// Drop Box -> Add Box to MP Grid, Clear Old Position
+		if (!followingMouse && global.aiGrid != noone && global._aiGrid != noone) {
+	
+			mp_grid_add_instance(global.aiGrid);
+			mp_grid_clear_old_instance(global.aiGrid);
 		
+			// Store Current Values As Old For Later Clearing
+			obbl = bbox_left;
+			obbr = bbox_right;
+			obbt = bbox_top;
+			obbb = bbox_bottom;
+		}
+	}	
 }
 	
 // Follow Mouse

@@ -1,3 +1,5 @@
+// Always Face Direction Moving
+
 if (path_exists(path)) {
 	var tx = path_get_point_x(path, path_get_number(path) - 1);
 	if (x > tx)

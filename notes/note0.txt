@@ -1,0 +1,50 @@
+/// @description		Check for clear line of sight from first object
+///	returns boolean		-> if clear line of sight exists
+/// @param	Obj1		-> object_instance
+/// @param	Obj2		-> object_instance
+/// -------------------------------------------------------------------------------
+
+// Get Parameters
+var from = argument0;
+var to	 = argument1;
+/// -------------------------------------------------------------------------------
+
+// Exit Condition
+if (!instance_exists(from) || !instance_exists(to))
+	return false;
+/// -------------------------------------------------------------------------------
+
+// Check For Clear Line Of Sight
+var lineOfSight = (collision_line(from.x, from.y, to.x, to.y, oWall, false, true) == noone);
+
+// Check If Within Peripherals 
+// Two Cone Vectors
+var dir1  = point_direction(from.x, from.y, from.x + (from.blindSpot * from.facing), from.y + from.sightRadius);
+var dir2  = point_direction(from.x, from.y, from.x + (from.blindSpot * from.facing), from.y - from.sightRadius);
+var vec1  = [from.x + lengthdir_x(from.sightRadius, dir1), from.y + lengthdir_y(from.sightRadius, dir1)];
+var vec2  = [from.x + lengthdir_x(from.sightRadius, dir2), from.y + lengthdir_y(from.sightRadius, dir2)];
+
+// Cone Vectors Angle
+var coneProd = (vec1[0] * vec2[0]) + (vec1[1] * vec2[1]);
+var coneMagProd = vector_magnitude(vec1) * vector_magnitude(vec2);
+var coneAng = arccos(coneProd / coneMagProd);
+
+// Target Vector
+var dir3 = point_direction(from.x, from.y, to.x, to.y);
+var dis3 = point_distance(from.x, from.y, to.x, to.y);
+var vecTarget  = [lengthdir_x(dis3, dir3), lengthdir_y(dis3, dir3)];
+
+// Middle Vector
+var dir4 = (dir1 + dir2) / 2;
+var vecMid  = [lengthdir_x(from.sightRadius, dir4), lengthdir_y(from.sightRadius, dir4)];
+
+// Dot Product of Cone Vectors
+var targProd = (vecTarget[0] * vecMid[0]) + (vecTarget[1] * vecMid[1]);
+var targMagProd = vector_magnitude(vecTarget) * vector_magnitude(vecMid);
+var targAng = arccos(targProd / targMagProd);
+
+// Facing = in range and within peripherals
+//var facing = (targAng <= 0.79 || targAng >= 2.36);
+var facing = targAng <= (coneAng / 2);
+
+return (lineOfSight && facing);
