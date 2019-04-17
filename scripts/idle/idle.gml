@@ -9,8 +9,10 @@
 		
 #endregion
 
-// End Path
-if (path_exists(path)) {
-	path_clear_points(path);
-	path_delete(path);
-}
+// Make Sure Path Exists
+if (!path_exists(path))
+	path = path_add();
+
+path_clear_points(path);
+
+path_position = 0;

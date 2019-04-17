@@ -1,3 +1,5 @@
+randomize();
+
 global.debug	= false;
 
 // ai Grid

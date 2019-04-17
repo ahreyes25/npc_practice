@@ -15,15 +15,13 @@
 		var target = argument[0];
 
 	// Exit Condition
-	if (!instance_exists(target) || !variable_instance_exists(id, "attackRadius") || 
-		!variable_instance_exists(id, "state")) {
+	if (!instance_exists(target) || !variable_instance_exists(id, "state") ||
+		!variable_instance_exists(id, "searchTimer")) {
 			return;
 	}
 
 #endregion
 
-if (
-	point_distance(x, y, target.x, target.y) <= attackRadius
-){
-	state = CPU_STATE.MELEE_CHARGE;
-}
+if (state == CPU_STATE.IDLE)
+	if (alarm[2] <= 0)
+		alarm[2] = searchTimer;

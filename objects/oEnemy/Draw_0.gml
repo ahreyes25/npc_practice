@@ -11,14 +11,29 @@ switch(state) {
 		image_speed = 0.8;
 		break;
 	
-	case CPU_STATE.MELEE:
+	case CPU_STATE.SEARCH:
+		sprite_index = sEnemy_run;
+		image_speed = 0.8;
+		break;
+	
+	case CPU_STATE.MELEE_CHARGE:
+		sprite_index = sEnemy_run;
+		image_speed = 0.0;
+		break;
+	
+	case CPU_STATE.MELEE_LUNGE:
 		sprite_index = sEnemy_melee;
-		image_speed = 0;
+		image_speed = 0.0;
+		break;
+	
+	case CPU_STATE.MELEE_COOLDOWN:
+		sprite_index = sEnemy_melee;
+		image_speed = 0.0;
 		break;
 }
 
 if (!global.debug)
-	draw_self();
+	draw_sprite_ext(sprite_index, image_index, x, y, image_xscale, image_yscale, 0, drawColor, image_alpha);
 
 #region Draw Debug Visuals
 	

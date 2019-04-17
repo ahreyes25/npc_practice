@@ -25,6 +25,8 @@ if (!path_exists(path))
 	path = path_add();
 			
 // Check for Valid Grid Path
-if (mp_grid_path(global.aiGrid, path, x, y, target.x, target.y, true)) {
-	path_start(path, moveSpd, path_action_stop, false);
+if (line_of_sight(id, target)) {
+	if (mp_grid_path(global.aiGrid, path, x, y, target.x, target.y, true)) {
+		path_start(path, moveSpd, path_action_stop, false);
+	}
 }
