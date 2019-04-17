@@ -23,7 +23,8 @@
 #endregion
 
 if (
-	point_distance(x, y, target.x, target.y) <= attackRadius
+	inside_radius(target, attackRadius) &&
+	line_of_sight(id, target)
 ){
 	state = CPU_STATE.MELEE_CHARGE;
 }

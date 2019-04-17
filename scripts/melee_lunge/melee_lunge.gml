@@ -16,14 +16,14 @@
 
 	// Exit Condition
 	if (!instance_exists(target) || !variable_instance_exists(id, "path") || 
-		!variable_instance_exists(id, "moveSpd") || !variable_instance_exists(id, "drawColor") ||
-		!variable_instance_exists(id, "state")) {
+		!variable_instance_exists(id, "moveSpd") || !variable_instance_exists(id, "state")) {
 			return;
 	}
 		
 #endregion
 
-drawColor = c_white;
+if (variable_instance_exists(id, "drawColor"))
+	drawColor = c_white;
 
 if (!path_exists(path))
 	path = path_add();

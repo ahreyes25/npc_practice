@@ -23,5 +23,5 @@
 #endregion
 
 if (state == CPU_STATE.IDLE)
-	if (alarm[2] <= 0)
+	if (alarm[2] == -1)
 		alarm[2] = searchTimer;

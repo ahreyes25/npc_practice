@@ -16,7 +16,7 @@
 
 	// Exit Condition
 	if (!instance_exists(target) || !variable_instance_exists(id, "path") || 
-		!variable_instance_exists(id, "drawColor") || !variable_instance_exists(id, "meleeChargeTime")) {
+		!variable_instance_exists(id, "meleeChargeTime")) {
 			return;
 	}
 		
@@ -38,4 +38,5 @@ if (path_exists(path))
 x += irandom_range(-1, 1);
 y += irandom_range(-1, 1);
 
-drawColor = c_red;
+if (variable_instance_exists(id, "drawColor"))
+	drawColor = c_red;
